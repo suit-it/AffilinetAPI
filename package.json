@@ -1,0 +1,16 @@
+{
+  "name": "article_import",
+  "version": "1.0.0",
+  "description": "Article Import Buildsystem",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-phpunit": "^0.3.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Golenia",
+  "license": "ISC"
+}

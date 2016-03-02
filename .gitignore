@@ -1,0 +1,7 @@
+vendor
+node_modules
+.DS_Store
+.idea
+affilinet.credentials.php
+.idea
+.DS_Store
