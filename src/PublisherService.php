@@ -55,12 +55,25 @@ class PublisherService
   }
 
 
+  public function getCreativeCategories($params) {
+    $creativeCategoriesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $creativeCategoriesParams = array_merge($creativeCategoriesParams, $params);
+
+    return $this->getSoapClientFrom('publisher_creative')->GetCreativeCategories($creativeCategoriesParams);
+  }
+
+
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
+    $this->wsdls['publisher_creative'] = "https://api.affili.net/V2.0/PublisherCreative.svc?wsdl";
   }
 
   private function initSoapClients() {
     $this->soapClients['account_service'] = null;
+    $this->soapClients['publisher_creative'] = null;
   }
 
   private function getSoapClientFrom($service) {

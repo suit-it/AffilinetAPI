@@ -61,5 +61,17 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertInstanceOf('stdClass', $publisherSummary);
     $this->assertTrue(isset($publisherSummary->Partnerships));
   }
+
+ /**
+  * @test
+ */
+ public function testGetCreativeCategories() {
+   $creativeCategories = self::$publisherService->getCreativeCategories(array(
+     'ProgramId' => 10
+   ));
+
+   $this->assertInstanceOf('stdClass', $creativeCategories);
+   $this->assertTrue(isset($creativeCategories->CreativeCategoryCollection));
+ }
 }
 
