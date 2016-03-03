@@ -73,5 +73,25 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue(isset($products->Products));
   }
 
+  /**
+   * @test
+  */
+  public function testGetCategoryList() {
+    $categoryList = self::$productService->getCategoryList(array('ShopId' => '0'));
+
+    $this->assertTrue(isset($categoryList->GetCategoryListSummary));
+    $this->assertTrue(isset($categoryList->Categories));
+  }
+
+  /**
+   * @test
+  */
+  public function testGetPropertyList() {
+    $propertyList = self::$productService->getPropertyList(array('ShopId' => \AffilinetCredentials::SHOP_ID));
+
+
+    $this->assertTrue(isset($propertyList->GetPropertyListSummary));
+    $this->assertTrue(isset($propertyList->PropertyCounts));
+  }
 }
 
