@@ -139,7 +139,20 @@ class PublisherService
   }
 
 
+  public function searchVoucherCodes($params) {
+    if(isset($params['request']) && !isset($params['SearchVoucherCodesRequestMessage'])) {
+      $params['SearchVoucherCodesRequestMessage'] = $params['request'];
+    }
 
+    $voucherCodesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+	  $voucherCodesParams = array_merge($voucherCodesParams, $params);
+
+    $this->getCommonParams();
+    return $this->getSoapClientFrom('publisher_inbox')->SearchVoucherCodes($voucherCodesParams);
+  }
 
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";

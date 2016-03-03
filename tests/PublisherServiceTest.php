@@ -161,6 +161,26 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
    * @test
   */
   public function testSearchVoucherCodes() {
-    self::$publisherService->searchVoucherCodes();
+    $params = array(
+			'StartDate' => strtotime("now"),
+			'EndDate' => strtotime("now"),
+			'VoucherCodeContent' => 'Empty',
+			'VoucherType' => 'AllProducts'
+    );
+
+    $voucherCodes = self::$publisherService->searchVoucherCodes(
+      array(
+      'request' => $params,
+      'DisplaySettings' => array(
+        'CurrentPage' => 1,
+        'PageSize' => 10
+      )
+    ));
+
+    $this->assertInstanceOf('stdClass', $voucherCodes);
+		$this->assertTrue(isset($voucherCodes->VoucherCodeCollection));
   }
+
+
+
 }
