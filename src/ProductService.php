@@ -33,6 +33,58 @@ class ProductService
     $this->logon = $logon;
   }
 
+
+  public function searchProducts($params) {
+    $searchProductsParams = [
+      'CredentialToken' => $this->logon->getToken(),
+      'PublisherId' => $this->logon->getPublisherId(),
+      'ShopIds' => isset($params['ShopIds']) ? $params['ShopIds'] : '0',
+      'ExcludeSubCategories' => false
+    ];
+
+    $searchProductsParams = array_merge($searchProductsParams, $params);
+
+    return $this->getSoapClient()->SearchProducts($searchProductsParams);
+  }
+
+  // TODO WRITE A TEST
+  public function getProducts() {
+
+  }
+
+
+  public function getShopList() {
+    return $this->getSoapClient()->GetShopList(
+      ['CredentialToken' => $this->logon->getToken(),
+       'PublisherId' => $this->logon->getPublisherId(),
+      ]
+    );
+  }
+
+  // TODO WRITE TEST
+  public function getCategoryList() {
+
+  }
+
+  // TODO WRITE TEST
+  public function getPropertyList() {
+
+  }
+
+
+  public function getCategoriesByShopId($shopId, $params = null) {
+    $categoryListParams = array('CredentialToken' => $this->logon->getToken(),
+                                'PublisherId' => $this->logon->getPublisherId(),
+                                'ShopId' => $shopId);
+
+    if(!is_null($params)) {
+      $categoryListParams = array_merge($categoryListParams, $params);
+    }
+
+    return $this->getSoapClient()->GetCategoryList($categoryListParams);
+  }
+
+
   /**
    *
    *
@@ -52,42 +104,6 @@ class ProductService
   }
 
 
-  public function getShopList() {
-    return $this->getSoapClient()->GetShopList(
-      ['CredentialToken' => $this->logon->getToken(),
-       'PublisherId' => $this->logon->getPublisherId(),
-       'PageSettings' => ['PageSize' => 100]
-      ]
-    );
-  }
-
-
-  public function getCategoriesByShopId($shopId) {
-    return $this->getSoapClient()->GetCategoryList(
-      ['CredentialToken' => $this->logon->getToken(),
-       'PublisherId' => $this->logon->getPublisherId(),
-       'ShopId' => $shopId
-      ]
-    );
-  }
-
-
-  public function searchProducts($params) {
-    $searchProductsParams = [
-      'CredentialToken' => $this->logon->getToken(),
-      'PublisherId' => $this->logon->getPublisherId(),
-      'ShopIds' => isset($params['ShopIds']) ? $params['ShopIds'] : $this->getShopList(),
-      'ShopIdMode' => isset($params['ShopIdMode']) ? $params['ShopIdMode'] : 'Include',
-      'Query' => $params['Query'],
-      'ExcludeSubCategories' => false,
-      'PageSettings' => ["PageSize" => 100],
-      'UseAffilinetCategories' => 'true'
-    ];
-
-    $searchProductsParams = array_merge($searchProductsParams, $params);
-
-    return $this->getSoapClient()->SearchProducts($searchProductsParams);
-  }
 
 
   private function getSoapClient() {
