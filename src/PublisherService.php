@@ -16,6 +16,11 @@ namespace AffilinetAPI;
  */
 class PublisherService
 {
+  const SEVEN_DAYS = "Last7days";
+  const MSG_ALL = "All";
+  const MSG_UNREAD = "UnreadMessages";
+  const MSG_READ = "ReadMessages";
+
   private $accountServiceWsdl = "";
   private $wsdls;
   private $logon;
@@ -62,18 +67,47 @@ class PublisherService
 
     $creativeCategoriesParams = array_merge($creativeCategoriesParams, $params);
 
-    return $this->getSoapClientFrom('publisher_creative')->GetCreativeCategories($creativeCategoriesParams);
+    return $this->getSoapClientFrom('publisher_creative')->
+      GetCreativeCategories($creativeCategoriesParams);
   }
 
+
+  public function searchCreatives($params) {
+    $searchCreativesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $searchCreativesParams = array_merge($searchCreativesParams, $params);
+
+    return $this->getSoapClientFrom('publisher_creative')->
+      SearchCreatives($searchCreativesParams);
+  }
+
+
+  public function getProgrammInfoMessages($params) {
+    if(isset($params['request']) && !isset($params['GetProgramInfoMessagesRequestMessage'])) {
+      $params['GetProgramInfoMessagesRequestMessage'] = $params['request'];
+    }
+
+    $programInfoMessagesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $programInfoMessagesParams = array_merge($programInfoMessagesParams, $params);
+
+    return $this->getSoapClientFrom('publisher_inbox')->GetProgramInfoMessages($programInfoMessagesParams);
+  }
 
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
     $this->wsdls['publisher_creative'] = "https://api.affili.net/V2.0/PublisherCreative.svc?wsdl";
+    $this->wsdls['publisher_inbox'] = "https://api.affili.net/V2.0/PublisherInbox.svc?wsdl";
   }
 
   private function initSoapClients() {
     $this->soapClients['account_service'] = null;
     $this->soapClients['publisher_creative'] = null;
+    $this->soapClients['publisher_inbox'] = null;
   }
 
   private function getSoapClientFrom($service) {

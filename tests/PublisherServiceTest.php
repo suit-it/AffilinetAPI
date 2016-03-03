@@ -62,8 +62,8 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue(isset($publisherSummary->Partnerships));
   }
 
- /**
-  * @test
+  /**
+   * @test
  */
  public function testGetCreativeCategories() {
    $creativeCategories = self::$publisherService->getCreativeCategories(array(
@@ -73,5 +73,44 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
    $this->assertInstanceOf('stdClass', $creativeCategories);
    $this->assertTrue(isset($creativeCategories->CreativeCategoryCollection));
  }
+
+  /**
+   * @test
+  */
+  public function testGetSearchCreatives() {
+    $displaySettings = array(
+      'PageSize' => 10,
+      'CurrentPage' => 1
+    );
+
+    $searchCreativeQuery = array('ProgramIds' => array('3432'));
+
+    $searchCreatives = self::$publisherService->searchCreatives(array(
+      'DisplaySettings' => $displaySettings,
+      'SearchCreativesQuery' => $searchCreativeQuery
+    ));
+
+    $this->assertInstanceOf('stdClass', $searchCreatives);
+    $this->assertTrue(isset($searchCreatives->CreativeCollection));
+  }
+
+
+  /**
+   * @test
+  */
+  public function testGetProgrammInfoMessages() {
+    $params = array(
+      'TimeSpan' => PublisherService::SEVEN_DAYS,
+      'Query' => '',
+      'MessageStatus' => PublisherService::MSG_READ
+    );
+
+    $programmInfoMessages = self::$publisherService->getProgrammInfoMessages(array(
+      'request' => $params
+    ));
+
+    $this->assertInstanceOf('stdClass', $programmInfoMessages);
+    $this->assertTrue(isset($programmInfoMessages->ArrayOfMessage));
+  }
 }
 
