@@ -130,5 +130,37 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertInstanceOf('stdClass', $programStatusMessages);
     $this->assertTrue(isset($programStatusMessages->ArrayOfPartnershipStatus));
   }
-}
 
+  /**
+   * @test
+  */
+  public function testGetRateChanges() {
+    $params = array(
+      'TimeSpan' => PublisherService::SEVEN_DAYS,
+      'Query' => '',
+      'MessageStatus' => PublisherService::ALL_RATES
+    );
+
+    $rateChanges = self::$publisherService->getRateChanges(array(
+      'request' => $params
+    ));
+
+    $this->assertInstanceOf('stdClass', $rateChanges);
+    $this->assertTrue(isset($rateChanges->ArrayOfChangedCommissionRateProgram));
+  }
+
+  /**
+   * @test
+   * @expectedException Exception
+  */
+  public function testSetMessageStatus() {
+    self::$publisherService->setMessageStatus();
+  }
+
+  /**
+   * @test
+  */
+  public function testSearchVoucherCodes() {
+    self::$publisherService->searchVoucherCodes();
+  }
+}

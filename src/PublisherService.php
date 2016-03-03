@@ -17,11 +17,14 @@ namespace AffilinetAPI;
 class PublisherService
 {
   const SEVEN_DAYS = "Last7days";
+
   const MSG_ALL = "All";
   const MSG_UNREAD = "UnreadMessages";
   const MSG_READ = "ReadMessages";
 
   const ALL_ACCEPTED_PARTNERSHIPS = "AllAcceptedPartnerships";
+
+  const ALL_RATES = "AllRates";
 
   private $accountServiceWsdl = "";
   private $wsdls;
@@ -114,6 +117,29 @@ class PublisherService
 
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramStatusMessages($programStatusMessagesParams);
   }
+
+
+  public function getRateChanges($params) {
+    if(isset($params['request']) && !isset($params['GetRateChangesRequestMessage'])) {
+      $params['GetRateChangesRequestMessage'] = $params['request'];
+    }
+
+    $rateChangesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $rateChangesParams = array_merge($rateChangesParams, $params);
+
+    return $this->getSoapClientFrom('publisher_inbox')->GetRateChanges($rateChangesParams);
+  }
+
+
+  public function setMessageStatus() {
+    throw new \Exception("not implemented");
+  }
+
+
+
 
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
