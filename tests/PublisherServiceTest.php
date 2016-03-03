@@ -36,5 +36,20 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertInstanceOf('stdClass', $linkedAccounts);
     $this->assertTrue(isset($linkedAccounts->LinkedAccountCollection));
   }
+
+  /**
+   * @test
+  */
+  public function testGetPayments() {
+    $startDate = strtotime("-5 years");
+    $endDate = strtotime("today");
+
+    $payments = self::$publisherService->getPayments(array(
+      'StartDate' => $startDate,
+      'EndDate' => $endDate
+    ));
+
+    $this->assertInstanceOf('stdClass', $payments);
+  }
 }
 

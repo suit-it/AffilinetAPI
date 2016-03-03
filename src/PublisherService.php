@@ -21,6 +21,7 @@ class PublisherService
   private $logon;
   private $soapClients;
 
+
   public function __construct($logon) {
     // Check Parameters
     if(!($logon instanceOf PublisherLogon)) {
@@ -35,9 +36,19 @@ class PublisherService
     $this->initSoapClients();
   }
 
+
   public function getLinkedAccounts() {
     return $this->getSoapClientFrom('account_service')->GetLinkedAccounts($this->getCommonParams());
   }
+
+
+  public function getPayments($params) {
+    $paymentParams = $this->getCommonParams();
+    $paymentParams = array_merge($paymentParams, $params);
+
+    return $this->getSoapClientFrom('account_service')->GetPayments($paymentParams);
+  }
+
 
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
