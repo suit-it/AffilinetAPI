@@ -181,6 +181,42 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue(isset($voucherCodes->VoucherCodeCollection));
   }
 
+  /**
+   * @test
+  */
+  public function testSetDefaultDisplaySettings() {
+    $myDisplaySettings = array(
+      'CurrentPage' => 1,
+      'PageSize' => 10
+    );
 
+    $displaySettings = self::$publisherService->setDefaultDisplaySettings($myDisplaySettings);
+    $expected = self::$publisherService->getDefaultDisplaySettings();
+
+    $this->assertEquals($expected, $myDisplaySettings);
+  }
+
+  /**
+   * @test
+   * @expectedException InvalidArgumentException
+   * @expectedExceptionMessage Wrong Argument expected array("CurrentPage" => (integer), "PageSize" => (integer))
+  */
+  public function tesSetDefaultDisplaySettingsWithWrongArguments() {
+    $myWrongDisplaySettings = array(
+      'CrrntPa' => 1,
+      'PageSize' => 10
+    );
+
+    $displaySettings = self::$publisherService->setDefaultDisplaySettings($myWrongDisplaySettings);
+  }
+
+  /**
+   * @test
+   * @expectedException InvalidArgumentException
+   * @expectedExceptionMessage exptected type array
+  */
+  public function testSetDefaultDisplaySettingsWithWrongType() {
+    $displaySettings = self::$publisherService->setDefaultDisplaySettings(0);
+  }
 
 }

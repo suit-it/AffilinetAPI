@@ -31,6 +31,8 @@ class PublisherService
   private $logon;
   private $soapClients;
 
+  private $displaySettings;
+
 
   public function __construct($logon) {
     // Check Parameters
@@ -152,6 +154,32 @@ class PublisherService
 
     $this->getCommonParams();
     return $this->getSoapClientFrom('publisher_inbox')->SearchVoucherCodes($voucherCodesParams);
+  }
+
+
+  public function setDefaultDisplaySettings($newDisplaySettings) {
+    if(is_array($newDisplaySettings) == false) {
+      throw New \InvalidArgumentException("exptected type array");
+    }
+
+    if(!isset($newDisplaySettings['CurrentPage']) || !isset($newDisplaySettings['PageSize'])) {
+      throw new \InvalidArgumentException('Wrong Argument expected array("CurrentPage" => (integer), "PageSize" => (integer))');
+    }
+
+    $this->displaySettings = $newDisplaySettings;
+  }
+
+  public function getDefaultDisplaySettings() {
+    return $this->displaySettings;
+  }
+
+  private function initDefaultDisplaySettings() {
+    $this->displaySettings = array(
+      'CurrentPage' => 1,
+      'PageSize' => 10,
+      'SortByEnum' => 'ProgramId',
+      'SortOrderEnum' => 'Ascending'
+    );
   }
 
   private function initWsdls() {
