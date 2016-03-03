@@ -13,7 +13,7 @@ namespace AffilinetAPI;
 include_once 'src/ProductLogon.php';
 include_once 'src/ProductService.php';
 
-class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
+class ProductServiceTest extends \PHPUnit_Framework_TestCase
 {
   protected static $logon;
   protected static $productService;
