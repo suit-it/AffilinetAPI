@@ -31,6 +31,10 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
    * @test
    */
   public function testGetLinkedAccounts() {
-  } 
+    $linkedAccounts = self::$publisherService->getLinkedAccounts();
+
+    $this->assertInstanceOf('stdClass', $linkedAccounts);
+    $this->assertTrue(isset($linkedAccounts->LinkedAccountCollection));
+  }
 }
 

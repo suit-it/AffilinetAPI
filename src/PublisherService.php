@@ -16,9 +16,10 @@ namespace AffilinetAPI;
  */
 class PublisherService
 {
-  private $accountServiceWsdl = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
+  private $accountServiceWsdl = "";
+  private $wsdls;
   private $logon;
-  private $soapClient;
+  private $soapClients;
 
   public function __construct($logon) {
     // Check Parameters
@@ -27,5 +28,37 @@ class PublisherService
     }
 
     $this->logon = $logon;
+    $this->soapClients = array();
+    $this->wsdls = array();
+
+    $this->initWsdls();
+    $this->initSoapClients();
+  }
+
+  public function getLinkedAccounts() {
+    return $this->getSoapClientFrom('account_service')->GetLinkedAccounts($this->getCommonParams());
+  }
+
+  private function initWsdls() {
+    $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
+  }
+
+  private function initSoapClients() {
+    $this->soapClients['account_service'] = null;
+  }
+
+  private function getSoapClientFrom($service) {
+    if($this->soapClients[$service] == null) {
+      $this->soapClients[$service] = new \SoapClient($this->wsdls[$service]);
+    }
+
+    return $this->soapClients[$service];
+  }
+
+  private function getCommonParams() {
+    return array(
+      'CredentialToken' => $this->logon->getToken(),
+      'PublisherId' => $this->logon->getPublisherId()
+    );
   }
 }
