@@ -67,7 +67,10 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
    * @test
   */
   public function testGetProducts() {
+    $products = self::$productService->getProducts(array('ProductIds' => array('0')));
 
+    $this->assertTrue(isset($products->ProductsSummary));
+    $this->assertTrue(isset($products->Products));
   }
 
 }

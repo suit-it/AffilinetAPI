@@ -47,9 +47,15 @@ class ProductService
     return $this->getSoapClient()->SearchProducts($searchProductsParams);
   }
 
-  // TODO WRITE A TEST
-  public function getProducts() {
+  public function getProducts($params) {
+    $productsParams = array(
+      'CredentialToken' => $this->logon->getToken(),
+      'PublisherId' => $this->logon->getPublisherId()
+    );
 
+    $productsParams = array_merge($productsParams, $params);
+
+    return $this->getSoapClient()->getProducts($productsParams);
   }
 
 
@@ -102,8 +108,6 @@ class ProductService
        'ShopId' => $shopId]
     );
   }
-
-
 
 
   private function getSoapClient() {
