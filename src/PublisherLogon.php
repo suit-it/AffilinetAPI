@@ -10,6 +10,8 @@
 
 namespace AffilinetAPI;
 
+include('Logon.php');
+
 class PublisherLogon extends Logon
 {
   // Logon Webservice endpoint

@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of AffilinetAPI.
+ *
+ * (c) Michael Golenia <golenia@suit-it.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace AffilinetAPI;
 
 include_once 'src/ProductLogon.php';
