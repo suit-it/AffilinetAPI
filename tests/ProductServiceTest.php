@@ -7,14 +7,14 @@ include_once 'src/ProductService.php';
 class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
 {
   protected static $logon;
-  protected static $affilinetProductData;
+  protected static $productService;
 
   /**
    * @beforeClass
    */
   public static function setUpBeforeClass() {
     self::$logon = new ProductLogon(\AffilinetCredentials::PUBLISHER_ID,\AffilinetCredentials::PRODUCT_PASSWORD);
-    self::$affilinetProductData = new ProductService(self::$logon);
+    self::$productService = new ProductService(self::$logon);
   }
 
 
@@ -23,17 +23,16 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
    *
   */
   public function testGetPropertyListByShopId() {
-    $propertyList = self::$affilinetProductData->getPropertyListByShopId(1);
+    $propertyList = self::$productService->getPropertyListByShopId(1);
     $this->assertTrue(isset($propertyList->GetPropertyListSummary));
   }
-
 
   /**
    * @test
    *
   */
   public function testGetShopList() {
-    $shopList = self::$affilinetProductData->getShopList();
+    $shopList = self::$productService->getShopList();
 
     $this->assertTrue( isset($shopList->GetShopListSummary) );
     $this->assertTrue( isset($shopList->Shops) );
@@ -46,7 +45,7 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
    *
   */
   public function testGetCategoriesByShopId() {
-    $categories = self::$affilinetProductData->getCategoriesByShopId(1);
+    $categories = self::$productService->getCategoriesByShopId(1);
 
     $this->assertTrue(isset($categories->Categories));
     $this->assertTrue(isset($categories->GetCategoryListSummary));
@@ -56,11 +55,20 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
   /**
    * @test
   */
-  public function tesetSearchProducts() {
+  public function testSearchProducts() {
     $params = ['Query' => 'Schadslfkjasdlfkjasdölfkajdsfmuck'];
-    $searchProducts = self::$affilinetProductData->searchProducts($params);
+    $searchProducts = self::$productService->searchProducts($params);
 
     $this->assertTrue(isset($searchProducts->Products));
     $this->assertTrue(isset($searchProducts->ProductsSummary));
   }
+
+  /**
+   * @test
+  */
+  public function testGetProducts() {
+
+  }
+
 }
+
