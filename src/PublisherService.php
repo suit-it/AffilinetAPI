@@ -50,6 +50,11 @@ class PublisherService
   }
 
 
+  public function getPublisherSummary() {
+    return $this->getSoapClientFrom('account_service')->GetPublisherSummary($this->logon->getToken());
+  }
+
+
   private function initWsdls() {
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
   }

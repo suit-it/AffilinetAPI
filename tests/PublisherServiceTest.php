@@ -51,5 +51,15 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 
     $this->assertInstanceOf('stdClass', $payments);
   }
+
+  /**
+   * @test
+  */
+  public function testGetPublisherSummary() {
+    $publisherSummary = self::$publisherService->getPublisherSummary();
+
+    $this->assertInstanceOf('stdClass', $publisherSummary);
+    $this->assertTrue(isset($publisherSummary->Partnerships));
+  }
 }
 
