@@ -89,7 +89,6 @@ class AffilinetProductServiceTest extends \PHPUnit_Framework_TestCase
   public function testGetPropertyList() {
     $propertyList = self::$productService->getPropertyList(array('ShopId' => \AffilinetCredentials::SHOP_ID));
 
-
     $this->assertTrue(isset($propertyList->GetPropertyListSummary));
     $this->assertTrue(isset($propertyList->PropertyCounts));
   }

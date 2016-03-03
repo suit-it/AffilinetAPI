@@ -20,14 +20,11 @@ class ProductService
   private $logon;
   private $soapClient;
 
-  /**
-   *
-   *
-  */
+
   public function __construct($logon) {
     // Check Parameters
     if(!($logon instanceOf ProductLogon)) {
-      throw new InvalidArgumentException("Logon is not from class ProductLogon");
+      throw new InvalidArgumentException("Logon is not an instance of ProductLogon");
     }
 
     $this->logon = $logon;
@@ -67,7 +64,6 @@ class ProductService
   
   public function getPropertyList($params) {
     $propertyListParams = $this->getCommonParams();
-
     $propertyListParams = array_merge($propertyListParams, $params);
 
     return $this->getSoapClient()->GetPropertyList($propertyListParams);
@@ -86,7 +82,7 @@ class ProductService
   }
 
 
-  public function getPropertyListByShopId($shopId) {
+  public function getPropertyListByShopId($shopId, $params = null) {
     // Check Parameters
     if(!is_int($shopId)) {
       throw new InvalidArgumentException("shopId must be from type Integer");
@@ -94,6 +90,10 @@ class ProductService
 
     $propertyListParams = $this->getCommonParams();
     $propertyListParams['ShopId'] = $shopId;
+
+    if(!is_null($params)) {
+        $propertyListParams = array_merge($propertyListParams, $params);
+    }
 
     return $this->getSoapClient()->getPropertyList($propertyListParams);
   }
@@ -106,6 +106,7 @@ class ProductService
 
     return $this->soapClient;
   }
+
 
   private function getCommonParams() {
     return array(
