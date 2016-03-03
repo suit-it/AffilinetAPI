@@ -21,6 +21,8 @@ class PublisherService
   const MSG_UNREAD = "UnreadMessages";
   const MSG_READ = "ReadMessages";
 
+  const ALL_ACCEPTED_PARTNERSHIPS = "AllAcceptedPartnerships";
+
   private $accountServiceWsdl = "";
   private $wsdls;
   private $logon;
@@ -84,7 +86,7 @@ class PublisherService
   }
 
 
-  public function getProgrammInfoMessages($params) {
+  public function getProgramInfoMessages($params) {
     if(isset($params['request']) && !isset($params['GetProgramInfoMessagesRequestMessage'])) {
       $params['GetProgramInfoMessagesRequestMessage'] = $params['request'];
     }
@@ -96,6 +98,21 @@ class PublisherService
     $programInfoMessagesParams = array_merge($programInfoMessagesParams, $params);
 
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramInfoMessages($programInfoMessagesParams);
+  }
+
+
+  public function getProgramStatusMessages($params) {
+    if(isset($params['request']) && !isset($params['GetProgramStatusMessagesRequestMessage'])) {
+      $params['GetProgramStatusMessagesRequestMessage'] = $params['request'];
+    }
+
+    $programStatusMessagesParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $programStatusMessagesParams = array_merge($programStatusMessagesParams, $params);
+
+    return $this->getSoapClientFrom('publisher_inbox')->GetProgramStatusMessages($programStatusMessagesParams);
   }
 
   private function initWsdls() {

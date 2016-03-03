@@ -98,19 +98,37 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
   /**
    * @test
   */
-  public function testGetProgrammInfoMessages() {
+  public function testGetprogramInfoMessages() {
     $params = array(
       'TimeSpan' => PublisherService::SEVEN_DAYS,
       'Query' => '',
       'MessageStatus' => PublisherService::MSG_READ
     );
 
-    $programmInfoMessages = self::$publisherService->getProgrammInfoMessages(array(
+    $programInfoMessages = self::$publisherService->getProgramInfoMessages(array(
       'request' => $params
     ));
 
-    $this->assertInstanceOf('stdClass', $programmInfoMessages);
-    $this->assertTrue(isset($programmInfoMessages->ArrayOfMessage));
+    $this->assertInstanceOf('stdClass', $programInfoMessages);
+    $this->assertTrue(isset($programInfoMessages->ArrayOfMessage));
+  }
+
+  /**
+   * @test
+  */
+  public function testGetProgramStatusMessages() {
+    $params = array(
+      'TimeSpan' => PublisherService::SEVEN_DAYS,
+      'Query' => '',
+      'MessagePartnershipStatus' => PublisherService::ALL_ACCEPTED_PARTNERSHIPS
+    );
+
+    $programStatusMessages = self::$publisherService->getProgramStatusMessages(array(
+      'request' => $params
+    ));
+
+    $this->assertInstanceOf('stdClass', $programStatusMessages);
+    $this->assertTrue(isset($programStatusMessages->ArrayOfPartnershipStatus));
   }
 }
 
