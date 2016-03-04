@@ -1,5 +1,5 @@
 {
-    "name": "suit-it/AffilinetAPI",
+    "name": "suit-it/affilinet-api",
     "type": "library",
     "description": "simplifies the usage of the WebService by affili.net",
     "keywords": ["affilinet", "affili", "affilinet soap"],
