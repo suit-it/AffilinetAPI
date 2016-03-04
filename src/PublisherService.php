@@ -328,6 +328,22 @@ class PublisherService
 	}
 
 
+	public function getPublisherStatisticsPerClick($params) {
+    if(isset($params['request']) && !isset($params['GetPublisherStatisticsPerClickRequestMessage'])) {
+      $params['GetPublisherStatisticsPerClickRequestMessage'] = $params['request'];
+    }
+
+		$publisherStatisticsPerClickParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$publisherStatisticsPerClickParams = $params + $publisherStatisticsPerClickParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetPublisherStatisticsPerClick($publisherStatisticsPerClickParams);
+	}
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
