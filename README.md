@@ -3,7 +3,13 @@ simplifies the usage of the WebService by affili.net
 
 ## Installation
 
-  TODO WITH COMPOSER
+  Open a command console, enter your project directory and add the following to your composer.json file:
+  
+  ```sh
+"require": {
+    "suit-it/affilinet-api": "dev-master"
+},
+``` 
   
 ## Examples
 ```php
