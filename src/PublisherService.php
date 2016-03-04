@@ -193,6 +193,16 @@ class PublisherService
   }
 
 
+  public function getProgramRates($params) {
+    $programRatesParams = $this->getCommonParams();
+
+    $programRatesParams = $programRatesParams + $params;
+
+    return $this->getSoapClientFrom('publisher_program')->
+      GetProgramRates($programRatesParams);
+  }
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,

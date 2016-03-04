@@ -248,4 +248,17 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue(isset($programCategories->RootCategories));
   }
 
+
+  /**
+   * @test
+  */
+  public function testGetProgramRates() {
+    $programRates = self::$publisherService->getProgramRates(array(
+      'ProgramId' => \AffilinetCredentials::PROGRAM_ID
+    ));
+
+    $this->assertInstanceOf('stdClass', $programRates);
+    $this->assertTrue(isset($programRates->RateCollection));
+  }
+
 }
