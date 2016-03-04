@@ -248,6 +248,22 @@ class PublisherService
 	}
 
 
+	public function getProgramStatistics($params) {
+    if(isset($params['request']) && !isset($params['GetProgramStatisticsRequestMessage'])) {
+      $params['GetProgramStatisticsRequestMessage'] = $params['request'];
+    }
+
+		$programStatisticsParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$programStatisticsParams = $params + $programStatisticsParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetProgramStatistics($programStatisticsParams);
+	}
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
