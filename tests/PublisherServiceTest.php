@@ -376,5 +376,32 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	/**
+   * @test
+  */
+	public function testGetSubIdStatistics() {
+		$startDate = strtotime("-2 weeks");
+		$endDate = strtotime("today");
+		$programIds = array('0');
+		$params = array(
+				'StartDate' => $startDate,
+				'EndDate' => $endDate,
+				'ProgramIds' => $programIds,
+				'ProgramTypes' => PublisherService::ALL,
+				'SubId' => '',
+				'MaximumRecords' => '1',
+				'TransactionStatus' => PublisherService::ALL,
+				'ValuationType' => PublisherService::DATE_OF_REGISTRATION
+		);
+
+		$subIdStatistics = self::$publisherService->getSubIdStatistics(array(
+			'request' => $params
+		));
+
+		$this->assertInstanceOf('stdClass', $subIdStatistics);
+		$this->assertTrue(isset($subIdStatistics->SubIdStatisticsRecords));
+	}
+
+
 
 }

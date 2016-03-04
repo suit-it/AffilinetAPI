@@ -280,6 +280,22 @@ class PublisherService
 	}
 
 
+	public function getSubIdStatistics($params) {
+    if(isset($params['request']) && !isset($params['GetSubIdStatisticsRequestMessage'])) {
+      $params['GetSubIdStatisticsRequestMessage'] = $params['request'];
+    }
+
+		$subIdStatisticsParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$subIdStatisticsParams = $params + $subIdStatisticsParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetSubIdStatistics($subIdStatisticsParams);
+	}
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
