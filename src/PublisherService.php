@@ -296,7 +296,7 @@ class PublisherService
 	}
 
 
-	public function GetClicksBySubIdPerDay($params) {
+	public function getClicksBySubIdPerDay($params) {
     if(isset($params['request']) && !isset($params['GetClicksBySubIdPerDayRequestMessage'])) {
       $params['GetClicksBySubIdPerDayRequestMessage'] = $params['request'];
     }
