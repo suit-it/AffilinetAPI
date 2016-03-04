@@ -16,6 +16,79 @@ namespace AffilinetAPI;
  */
 class PublisherService
 {
+  const PAYMENT_STATUS_NONE = "None";
+  const PAYMENT_STATUS_IN_PROCESS = "InProcess";
+  const PAYMENT_STATUS_PAID = "Paid";
+  const PAYMENT_STATUS_HOLD = "Hold";
+  const PAYMENT_STATUS_SBA = "SBAFormMissing";
+
+  const PAYMENT_TYPE_NONE = "None";
+  const PAYMENT_TYPE_TRANSFER = "Transfer";
+  const PAYMENT_TYPE_CHEQUE = "Cheque";
+  const PAYMENT_TYPE_MONEYBOOKERS = "Moneybookers";
+  const PAYMENT_TYPE_PAYPAL = "PayPal";
+
+  const CREATIVE_TYPE_BANNER = "Banner";
+  const CREATIVE_TYPE_TEXT = "Text";
+  const CREATIVE_TYPE_HTML = "HTML";
+  const CREATIVE_TYPE_ROTATION = "Rotation";
+
+  const HTML_LINK_TYPE_HTML_BANNER = "HTMLBanner";
+  const HTML_LINK_TYPE_FLASH_BANNER = "FlashBanner";
+  const HTML_LINK_TYPE_MICROSITE = "Microsite";
+  const HTML_LINK_TYPE_POPUP = "PopUp";
+  const HTML_LINK_TYPE_POPUNDER  = "PopUnder";
+  const HTML_LINK_TYPE_IFRAME = "IFrame";
+  const HTML_LINK_TYPE_HTML_FORM = "HTMLForm";
+  const HTML_LINK_TYPE_FLASH_FORM = "FlashForm";
+  const HTML_LINK_TYPE_VIDEO_AD = "VideoAd";
+  const HTML_LINK_TYPE_PRODUCT_LINK = "ProductLink";
+  const HTML_LINK_TYPE_BANNER_ROTATION  = "BannerRotation";
+  const HTML_LINK_TYPE_PAGE_PEEL = "PagePeel";
+  const HTML_LINK_TYPE_OTHER = "Other";
+
+  const TIME_SPAN_LAST_LOGIN = "LastLogin";
+  const TIME_SPAN_LAST_LAST_7_DAYS = "Last7days";
+  const TIME_SPAN_LAST_LAST_14_DAYS = "Last14days";
+  const TIME_SPAN_LAST_MONTH = "LastMonth";
+  const TIME_SPAN_LAST_3_MONTHS = "Last3Months";
+
+  const MESSAGE_STATUS_ALL = "All";
+  const MESSAGE_STATUS_UNREAD = "UnreadMessages";
+  const MESSAGE_STATUS_READ = "ReadMessages";
+
+  const MESSAGE_PARTNERSHIP_STATUS_ALL = "AllPartnerships";
+  const MESSAGE_PARTNERSHIP_STATUS_ALL_ACCEPTED = "AllAcceptedPartnerships";
+  const MESSAGE_PARTNERSHIP_STATUS_ALL_TEMPORARILY_ACCEPTED = "AllTemporarilyAcceptedPartnerships";
+  const MESSAGE_PARTNERSHIP_STATUS_ALL_DECLINED = "AllDeclinedPartnerships";
+
+  const PARTNERSHIP_ACTION_NOT_FOUND = "NotFound";
+  const PARTNERSHIP_ACTION_NULL = "Null";
+  const PARTNERSHIP_ACTION_PAUSED = "Paused";
+  const PARTNERSHIP_ACTION_WARNING = "Warning";
+  const PARTNERSHIP_ACTION_SPECIAL_PERMISSION = "SpecialPermission";
+  const PARTNERSHIP_ACTION_SPECIAL_PERMISSION_END = "SpecialPermissionEnd";
+  const PARTNERSHIP_ACTION_OK = "Ok";
+  const PARTNERSHIP_ACTION_CANCELLED = "Cancelled";
+  const PARTNERSHIP_ACTION_REFUSED = "Refused";
+  const PARTNERSHIP_ACTION_WAITING = "Waiting";
+  const PARTNERSHIP_ACTION_PRELIMANRY_OK = "PreliminaryOk";
+
+  const MAIL_MESSAGE_STATUS_NONE = "None";
+  const MAIL_MESSAGE_STATUS_READ = "Read";
+  const MAIL_MESSAGE_STATUS_UNREAD = "Unread";
+  const MAIL_MESSAGE_STATUS_DELETED = "Deleted";
+
+  const SORT_BY_ID = "Id";
+  const SORT_BY_PROGRAM_ID = "ProgramId";
+  const SORT_BY_TITLE = "Title";
+  const SORT_BY_LAST_CHANGE = "LastChangeDate";
+  const SORT_BY_START_DATE = "StartDate";
+  const SORT_BY_END_DATE = "EndDate";
+
+
+
+
   const SEVEN_DAYS = "Last7days";
 
   const MSG_ALL = "All";
@@ -29,6 +102,7 @@ class PublisherService
   const ALL = "All";
 
   const DATE_OF_REGISTRATION = "DateOfRegistration";
+
 
   private $wsdls;
   private $logon;
@@ -89,7 +163,6 @@ class PublisherService
     $creativeCategoriesParams = array(
       'CredentialToken' => $this->logon->getToken()
     );
-
 
     $creativeCategoriesParams = $params + $creativeCategoriesParams;
 
