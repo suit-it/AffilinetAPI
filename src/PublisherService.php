@@ -264,6 +264,22 @@ class PublisherService
 	}
 
 
+	public function getSalesLeadsStatistics($params) {
+    if(isset($params['request']) && !isset($params['GetSalesLeadsStatisticsRequestMessage'])) {
+      $params['GetSalesLeadsStatisticsRequestMessage'] = $params['request'];
+    }
+
+		$salesLeadStatisticsParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$salesLeadStatisticsParams = $params + $salesLeadStatisticsParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetSalesLeadsStatistics($salesLeadStatisticsParams);
+	}
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,

@@ -349,5 +349,32 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 	}
 
 
+	/**
+	 * @test
+  */
+	public function testGetSalesLeadsStatistics() {
+		$startDate = strtotime("-2 weeks");
+		$endDate = strtotime("today");
+		$programIds = array('0');
+		$params = array(
+				'StartDate' => $startDate,
+				'EndDate' => $endDate,
+				'TransactionStatus' => 'All',
+				'ProgramIds' => $programIds,
+				'SubId' => '',
+				'ProgramTypes' => 'All',
+				'MaximumRecords' => '10',
+				'ValuationType' => 'DateOfRegistration'
+		);
+
+		$salesLeadsStatistics = self::$publisherService->getSalesLeadsStatistics(array(
+			'request' => $params
+		));
+
+		$this->assertInstanceOf('stdClass', $salesLeadsStatistics);
+		$this->assertTrue(isset($salesLeadsStatistics->SalesLeadsStatisticsRecords));
+	}
+
+
 
 }
