@@ -201,7 +201,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
    * @expectedException InvalidArgumentException
    * @expectedExceptionMessage Wrong Argument expected array("CurrentPage" => (integer), "PageSize" => (integer))
   */
-  public function tesSetDefaultDisplaySettingsWithWrongArguments() {
+  public function testSetDefaultDisplaySettingsWithWrongArguments() {
     $myWrongDisplaySettings = array(
       'CrrntPa' => 1,
       'PageSize' => 10
@@ -218,5 +218,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
   public function testSetDefaultDisplaySettingsWithWrongType() {
     $displaySettings = self::$publisherService->setDefaultDisplaySettings(0);
   }
+
+
 
 }
