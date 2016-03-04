@@ -10,6 +10,10 @@
 
 namespace AffilinetAPI;
 
+/**
+ * Class Logon
+ * @package AffilinetAPI
+ */
 abstract class Logon
 {
   // Logon Webservice endpoint

@@ -11,8 +11,8 @@
 namespace AffilinetAPI;
 
 /**
- * Product Service
- *
+ * Class ProductService
+ * @package AffilinetAPI
  */
 class ProductService
 {
@@ -20,7 +20,10 @@ class ProductService
   private $logon;
   private $soapClient;
 
-
+  /**
+   * ProductService constructor.
+   * @param $logon
+   */
   public function __construct($logon) {
     // Check Parameters
     if(!($logon instanceOf ProductLogon)) {
@@ -30,17 +33,23 @@ class ProductService
     $this->logon = $logon;
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function searchProducts($params) {
     $searchProductsParams = $this->getCommonParams();
     $searchProductsParams['ShopIds'] = '0';
-    
+
     $searchProductsParams = array_merge($searchProductsParams, $params);
 
     return $this->getSoapClient()->SearchProducts($searchProductsParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getProducts($params) {
     $productsParams = $this->getCommonParams();
     $productsParams = array_merge($productsParams, $params);
@@ -48,20 +57,28 @@ class ProductService
     return $this->getSoapClient()->getProducts($productsParams);
   }
 
-
+  /**
+   * @return mixed
+   */
   public function getShopList() {
     return $this->getSoapClient()->GetShopList($this->getCommonParams());
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getCategoryList($params) {
     $categoryListParams = $this->getCommonParams();
     $categoryListParams = array_merge($categoryListParams, $params);
 
-    return $this->getSoapClient()->getCategoryList($categoryListParams);  
+    return $this->getSoapClient()->getCategoryList($categoryListParams);
   }
 
-  
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getPropertyList($params) {
     $propertyListParams = $this->getCommonParams();
     $propertyListParams = array_merge($propertyListParams, $params);
@@ -69,7 +86,11 @@ class ProductService
     return $this->getSoapClient()->GetPropertyList($propertyListParams);
   }
 
-
+  /**
+   * @param $shopId
+   * @param null $params
+   * @return mixed
+   */
   public function getCategoriesByShopId($shopId, $params = null) {
     $categoryListParams = $this->getCommonParams();
     $categoryListParams['ShopId'] = $shopId;
@@ -81,7 +102,12 @@ class ProductService
     return $this->getSoapClient()->GetCategoryList($categoryListParams);
   }
 
-
+  /**
+   * @param $shopId
+   * @param null $params
+   * @return mixed
+   * @throws InvalidArgumentException
+   */
   public function getPropertyListByShopId($shopId, $params = null) {
     // Check Parameters
     if(!is_int($shopId)) {
@@ -98,7 +124,9 @@ class ProductService
     return $this->getSoapClient()->getPropertyList($propertyListParams);
   }
 
-
+  /**
+   * @return \SoapClient
+   */
   private function getSoapClient() {
     if($this->soapClient == null) {
       $this->soapClient = new \SoapClient($this->wsdl);
@@ -107,7 +135,9 @@ class ProductService
     return $this->soapClient;
   }
 
-
+  /**
+   * @return array
+   */
   private function getCommonParams() {
     return array(
       'CredentialToken' => $this->logon->getToken(),

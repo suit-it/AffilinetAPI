@@ -11,8 +11,8 @@
 namespace AffilinetAPI;
 
 /**
- * Publisher Service
- *
+ * Class PublisherService
+ * @package AffilinetAPI
  */
 class PublisherService
 {
@@ -28,16 +28,18 @@ class PublisherService
 
   const ALL = "All";
 
-	const DATE_OF_REGISTRATION = "DateOfRegistration";
+  const DATE_OF_REGISTRATION = "DateOfRegistration";
 
-  private $accountServiceWsdl = "";
   private $wsdls;
   private $logon;
   private $soapClients;
 
   private $displaySettings;
 
-
+  /**
+   * PublisherService constructor.
+   * @param $logon
+   */
   public function __construct($logon) {
     // Check Parameters
     if(!($logon instanceOf PublisherLogon)) {
@@ -53,12 +55,17 @@ class PublisherService
     $this->initDefaultDisplaySettings();
   }
 
-
+  /**
+   * @return mixed
+   */
   public function getLinkedAccounts() {
     return $this->getSoapClientFrom('account_service')->GetLinkedAccounts($this->getCommonParams());
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getPayments($params) {
     $paymentParams = $this->getCommonParams();
 
@@ -67,12 +74,17 @@ class PublisherService
     return $this->getSoapClientFrom('account_service')->GetPayments($paymentParams);
   }
 
-
+  /**
+   * @return mixed
+   */
   public function getPublisherSummary() {
     return $this->getSoapClientFrom('account_service')->GetPublisherSummary($this->logon->getToken());
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getCreativeCategories($params) {
     $creativeCategoriesParams = array(
       'CredentialToken' => $this->logon->getToken()
@@ -85,7 +97,10 @@ class PublisherService
       GetCreativeCategories($creativeCategoriesParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function searchCreatives($params) {
     $searchCreativesParams = array(
       'CredentialToken' => $this->logon->getToken()
@@ -97,7 +112,10 @@ class PublisherService
       SearchCreatives($searchCreativesParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getProgramInfoMessages($params) {
     if(isset($params['request']) && !isset($params['GetProgramInfoMessagesRequestMessage'])) {
       $params['GetProgramInfoMessagesRequestMessage'] = $params['request'];
@@ -112,7 +130,10 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramInfoMessages($programInfoMessagesParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getProgramStatusMessages($params) {
     if(isset($params['request']) && !isset($params['GetProgramStatusMessagesRequestMessage'])) {
       $params['GetProgramStatusMessagesRequestMessage'] = $params['request'];
@@ -127,7 +148,10 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramStatusMessages($programStatusMessagesParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getRateChanges($params) {
     if(isset($params['request']) && !isset($params['GetRateChangesRequestMessage'])) {
       $params['GetRateChangesRequestMessage'] = $params['request'];
@@ -142,12 +166,17 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_inbox')->GetRateChanges($rateChangesParams);
   }
 
-
+  /**
+   * @throws \Exception
+   */
   public function setMessageStatus() {
     throw new \Exception("not implemented");
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function searchVoucherCodes($params) {
     if(isset($params['request']) && !isset($params['SearchVoucherCodesRequestMessage'])) {
       $params['SearchVoucherCodesRequestMessage'] = $params['request'];
@@ -162,7 +191,9 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_inbox')->SearchVoucherCodes($voucherCodesParams);
   }
 
-
+  /**
+   * @param $newDisplaySettings
+   */
   public function setDefaultDisplaySettings($newDisplaySettings) {
     if(is_array($newDisplaySettings) == false) {
       throw New \InvalidArgumentException("exptected type array");
@@ -175,12 +206,17 @@ class PublisherService
     $this->displaySettings = $newDisplaySettings;
   }
 
-
+  /**
+   * @return mixed
+   */
   public function getDefaultDisplaySettings() {
     return $this->displaySettings;
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getPrograms($params) {
     $programParams = array(
       'CredentialToken' => $this->logon->getToken()
@@ -191,13 +227,18 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_program')->GetPrograms($programParams);
   }
 
-
+  /**
+   * @return mixed
+   */
   public function getProgramCategories() {
     return $this->getSoapClientFrom('publisher_program')->
       GetProgramCategories($this->logon->getToken());
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getProgramRates($params) {
     $programRatesParams = $this->getCommonParams();
 
@@ -207,7 +248,10 @@ class PublisherService
       GetProgramRates($programRatesParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getTransactions($params) {
     $transactionParams = array(
       'CredentialToken' => $this->logon->getToken()
@@ -219,7 +263,10 @@ class PublisherService
       GetTransactions($transactionParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
   public function getBasketItems($params) {
     $basketItemsParams = array(
       'CredentialToken' => $this->logon->getToken()
@@ -231,7 +278,10 @@ class PublisherService
       GetBasketItems($basketItemsParams);
   }
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getDailyStatistics($params) {
     if(isset($params['request']) && !isset($params['GetDailyStatisticsRequestMessage'])) {
       $params['GetDailyStatisticsRequestMessage'] = $params['request'];
@@ -247,7 +297,10 @@ class PublisherService
 			GetDailyStatistics($dailyStatisticsParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getProgramStatistics($params) {
     if(isset($params['request']) && !isset($params['GetProgramStatisticsRequestMessage'])) {
       $params['GetProgramStatisticsRequestMessage'] = $params['request'];
@@ -263,7 +316,10 @@ class PublisherService
 			GetProgramStatistics($programStatisticsParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getSalesLeadsStatistics($params) {
     if(isset($params['request']) && !isset($params['GetSalesLeadsStatisticsRequestMessage'])) {
       $params['GetSalesLeadsStatisticsRequestMessage'] = $params['request'];
@@ -279,7 +335,10 @@ class PublisherService
 			GetSalesLeadsStatistics($salesLeadStatisticsParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getSubIdStatistics($params) {
     if(isset($params['request']) && !isset($params['GetSubIdStatisticsRequestMessage'])) {
       $params['GetSubIdStatisticsRequestMessage'] = $params['request'];
@@ -295,7 +354,10 @@ class PublisherService
 			GetSubIdStatistics($subIdStatisticsParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getClicksBySubIdPerDay($params) {
     if(isset($params['request']) && !isset($params['GetClicksBySubIdPerDayRequestMessage'])) {
       $params['GetClicksBySubIdPerDayRequestMessage'] = $params['request'];
@@ -311,7 +373,10 @@ class PublisherService
 			GetClicksBySubIdPerDay($clicksBySubIdPerDayParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getPublisherClicksSummary($params) {
     if(isset($params['request']) && !isset($params['GetPublisherClicksSummaryRequestMessage'])) {
       $params['GetPublisherClicksSummaryRequestMessage'] = $params['request'];
@@ -327,7 +392,10 @@ class PublisherService
 			GetPublisherClicksSummary($publisherClicksSummaryParams);
 	}
 
-
+  /**
+   * @param $params
+   * @return mixed
+   */
 	public function getPublisherStatisticsPerClick($params) {
     if(isset($params['request']) && !isset($params['GetPublisherStatisticsPerClickRequestMessage'])) {
       $params['GetPublisherStatisticsPerClickRequestMessage'] = $params['request'];
@@ -342,6 +410,7 @@ class PublisherService
 		return $this->getSoapClientFrom('publisher_statistics')->
 			GetPublisherStatisticsPerClick($publisherStatisticsPerClickParams);
 	}
+
 
 
   private function initDefaultDisplaySettings() {

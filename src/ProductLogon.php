@@ -12,6 +12,10 @@ namespace AffilinetAPI;
 
 include('Logon.php');
 
+/**
+ * Class ProductLogon
+ * @package AffilinetAPI
+ */
 class ProductLogon extends Logon
 {
   // Logon Webservice endpoint
