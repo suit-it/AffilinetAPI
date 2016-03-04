@@ -284,4 +284,16 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue(isset($transactions->TransactionCollection));
   }
 
+
+  /**
+   * @test
+   */
+  public function testGetBasketItems() {
+    $basketItems = self::$publisherService->getBasketItems(array(
+      'BasketId' => 10
+    ));
+
+    $this->assertInstanceOf('stdClass', $basketItems);
+    $this->assertTrue(isset($basketItems->BasketItemCollection));
+  }
 }

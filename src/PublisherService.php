@@ -218,6 +218,18 @@ class PublisherService
   }
 
 
+  public function getBasketItems($params) {
+    $basketItemsParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $basketItemsParams = $params + $basketItemsParams;
+
+    return $this->getSoapClientFrom('publisher_statistics')->
+      GetBasketItems($basketItemsParams);
+  }
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
