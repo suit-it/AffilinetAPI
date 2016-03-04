@@ -261,4 +261,27 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue(isset($programRates->RateCollection));
   }
 
+
+  /**
+   * @test
+  */
+  public function testGetTransactions() {
+    $startDate = strtotime("-2 weeks");
+    $endDate = strtotime("today");
+
+    $transactionQuery = array(
+      'TransactionStatus' => PublisherService::ALL,
+      'StartDate' => $startDate,
+      'EndDate' => $endDate
+    );
+
+    $transactions = self::$publisherService->getTransactions(array(
+      'PageSettings' => self::$publisherService->getDefaultDisplaySettings(),
+      'TransactionQuery' => $transactionQuery
+    ));
+
+    $this->assertInstanceOf('stdClass', $transactions);
+    $this->assertTrue(isset($transactions->TransactionCollection));
+  }
+
 }

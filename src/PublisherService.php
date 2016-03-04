@@ -26,6 +26,8 @@ class PublisherService
 
   const ALL_RATES = "AllRates";
 
+  const ALL = "All";
+
   private $accountServiceWsdl = "";
   private $wsdls;
   private $logon;
@@ -203,6 +205,18 @@ class PublisherService
   }
 
 
+  public function getTransactions($params) {
+    $transactionParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $transactionParams = $transactionParams + $params;
+
+    return $this->getSoapClientFrom('publisher_statistics')->
+      GetTransactions($transactionParams);
+  }
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
@@ -217,6 +231,7 @@ class PublisherService
     $this->wsdls['publisher_creative'] = "https://api.affili.net/V2.0/PublisherCreative.svc?wsdl";
     $this->wsdls['publisher_inbox'] = "https://api.affili.net/V2.0/PublisherInbox.svc?wsdl";
     $this->wsdls['publisher_program'] = "https://api.affili.net/V2.0/PublisherProgram.svc?wsdl";
+    $this->wsdls['publisher_statistics'] = "https://api.affili.net/V2.0/PublisherStatistics.svc?wsdl";
   }
 
   private function initSoapClients() {
@@ -224,6 +239,7 @@ class PublisherService
     $this->soapClients['publisher_creative'] = null;
     $this->soapClients['publisher_inbox'] = null;
     $this->soapClients['publisher_program'] = null;
+    $this->soapClients['publisher_statistics'] = null;
   }
 
   private function getSoapClientFrom($service) {
