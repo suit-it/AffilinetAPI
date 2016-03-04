@@ -219,6 +219,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $displaySettings = self::$publisherService->setDefaultDisplaySettings(0);
   }
 
+
   /**
    * @test
    */
@@ -234,6 +235,17 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 
     $this->assertInstanceOf('stdClass', $programs);
     $this->assertTrue(isset($programs->ProgramCollection));
+  }
+
+
+  /**
+   * @test
+   */
+  public function testGetProgramCategories() {
+    $programCategories = self::$publisherService->getProgramCategories();
+
+    $this->assertInstanceOf('stdClass', $programCategories);
+    $this->assertTrue(isset($programCategories->RootCategories));
   }
 
 }

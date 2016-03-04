@@ -187,6 +187,12 @@ class PublisherService
   }
 
 
+  public function getProgramCategories() {
+    return $this->getSoapClientFrom('publisher_program')->
+      GetProgramCategories($this->logon->getToken());
+  }
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
