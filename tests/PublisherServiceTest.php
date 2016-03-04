@@ -98,7 +98,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
   /**
    * @test
   */
-  public function testGetprogramInfoMessages() {
+  public function testGetProgramInfoMessages() {
     $params = array(
       'TimeSpan' => PublisherService::SEVEN_DAYS,
       'Query' => '',
@@ -106,7 +106,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     );
 
     $programInfoMessages = self::$publisherService->getProgramInfoMessages(array(
-      'request' => $params
+      'Request' => $params
     ));
 
     $this->assertInstanceOf('stdClass', $programInfoMessages);
@@ -124,7 +124,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     );
 
     $programStatusMessages = self::$publisherService->getProgramStatusMessages(array(
-      'request' => $params
+      'Request' => $params
     ));
 
     $this->assertInstanceOf('stdClass', $programStatusMessages);
@@ -142,7 +142,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     );
 
     $rateChanges = self::$publisherService->getRateChanges(array(
-      'request' => $params
+      'Request' => $params
     ));
 
     $this->assertInstanceOf('stdClass', $rateChanges);
@@ -170,7 +170,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 
     $voucherCodes = self::$publisherService->searchVoucherCodes(
       array(
-      'request' => $params,
+      'Request' => $params,
       'DisplaySettings' => array(
         'CurrentPage' => 1,
         'PageSize' => 10
@@ -315,7 +315,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
     $dailyStatistics = self::$publisherService->getDailyStatistics(array(
-      'request' => $params
+      'Request' => $params
     ));
 
 		$this->assertInstanceOf('stdClass', $dailyStatistics);
@@ -341,7 +341,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$programStatistics = self::$publisherService->getProgramStatistics(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $programStatistics);
@@ -368,7 +368,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$salesLeadsStatistics = self::$publisherService->getSalesLeadsStatistics(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $salesLeadsStatistics);
@@ -395,7 +395,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$subIdStatistics = self::$publisherService->getSubIdStatistics(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $subIdStatistics);
@@ -417,7 +417,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$clicksBySubIdPerDay = self::$publisherService->getClicksBySubIdPerDay(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $clicksBySubIdPerDay);
@@ -439,7 +439,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$publisherClicksSummary = self::$publisherService->getPublisherClicksSummary(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $publisherClicksSummary);
@@ -462,7 +462,7 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$publisherStatisticsPerClick = self::$publisherService->getPublisherStatisticsPerClick(array(
-			'request' => $params
+			'Request' => $params
 		));
 
 		$this->assertInstanceOf('stdClass', $publisherStatisticsPerClick);

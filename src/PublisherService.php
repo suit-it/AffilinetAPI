@@ -190,8 +190,8 @@ class PublisherService
    * @return mixed
    */
   public function getProgramInfoMessages($params) {
-    if(isset($params['request']) && !isset($params['GetProgramInfoMessagesRequestMessage'])) {
-      $params['GetProgramInfoMessagesRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetProgramInfoMessagesRequestMessage'])) {
+      $params['GetProgramInfoMessagesRequestMessage'] = $params['Request'];
     }
 
     $programInfoMessagesParams = array(
@@ -208,8 +208,8 @@ class PublisherService
    * @return mixed
    */
   public function getProgramStatusMessages($params) {
-    if(isset($params['request']) && !isset($params['GetProgramStatusMessagesRequestMessage'])) {
-      $params['GetProgramStatusMessagesRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetProgramStatusMessagesRequestMessage'])) {
+      $params['GetProgramStatusMessagesRequestMessage'] = $params['Request'];
     }
 
     $programStatusMessagesParams = array(
@@ -226,8 +226,8 @@ class PublisherService
    * @return mixed
    */
   public function getRateChanges($params) {
-    if(isset($params['request']) && !isset($params['GetRateChangesRequestMessage'])) {
-      $params['GetRateChangesRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetRateChangesRequestMessage'])) {
+      $params['GetRateChangesRequestMessage'] = $params['Request'];
     }
 
     $rateChangesParams = array(
@@ -251,8 +251,8 @@ class PublisherService
    * @return mixed
    */
   public function searchVoucherCodes($params) {
-    if(isset($params['request']) && !isset($params['SearchVoucherCodesRequestMessage'])) {
-      $params['SearchVoucherCodesRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['SearchVoucherCodesRequestMessage'])) {
+      $params['SearchVoucherCodesRequestMessage'] = $params['Request'];
     }
 
     $voucherCodesParams = array(
@@ -356,8 +356,8 @@ class PublisherService
    * @return mixed
    */
 	public function getDailyStatistics($params) {
-    if(isset($params['request']) && !isset($params['GetDailyStatisticsRequestMessage'])) {
-      $params['GetDailyStatisticsRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetDailyStatisticsRequestMessage'])) {
+      $params['GetDailyStatisticsRequestMessage'] = $params['Request'];
     }
 
 		$dailyStatisticsParams = array(
@@ -375,8 +375,8 @@ class PublisherService
    * @return mixed
    */
 	public function getProgramStatistics($params) {
-    if(isset($params['request']) && !isset($params['GetProgramStatisticsRequestMessage'])) {
-      $params['GetProgramStatisticsRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetProgramStatisticsRequestMessage'])) {
+      $params['GetProgramStatisticsRequestMessage'] = $params['Request'];
     }
 
 		$programStatisticsParams = array(
@@ -394,8 +394,8 @@ class PublisherService
    * @return mixed
    */
 	public function getSalesLeadsStatistics($params) {
-    if(isset($params['request']) && !isset($params['GetSalesLeadsStatisticsRequestMessage'])) {
-      $params['GetSalesLeadsStatisticsRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetSalesLeadsStatisticsRequestMessage'])) {
+      $params['GetSalesLeadsStatisticsRequestMessage'] = $params['Request'];
     }
 
 		$salesLeadStatisticsParams = array(
@@ -413,8 +413,8 @@ class PublisherService
    * @return mixed
    */
 	public function getSubIdStatistics($params) {
-    if(isset($params['request']) && !isset($params['GetSubIdStatisticsRequestMessage'])) {
-      $params['GetSubIdStatisticsRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetSubIdStatisticsRequestMessage'])) {
+      $params['GetSubIdStatisticsRequestMessage'] = $params['Request'];
     }
 
 		$subIdStatisticsParams = array(
@@ -432,8 +432,8 @@ class PublisherService
    * @return mixed
    */
 	public function getClicksBySubIdPerDay($params) {
-    if(isset($params['request']) && !isset($params['GetClicksBySubIdPerDayRequestMessage'])) {
-      $params['GetClicksBySubIdPerDayRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetClicksBySubIdPerDayRequestMessage'])) {
+      $params['GetClicksBySubIdPerDayRequestMessage'] = $params['Request'];
     }
 
 		$clicksBySubIdPerDayParams = array(
@@ -451,8 +451,8 @@ class PublisherService
    * @return mixed
    */
 	public function getPublisherClicksSummary($params) {
-    if(isset($params['request']) && !isset($params['GetPublisherClicksSummaryRequestMessage'])) {
-      $params['GetPublisherClicksSummaryRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetPublisherClicksSummaryRequestMessage'])) {
+      $params['GetPublisherClicksSummaryRequestMessage'] = $params['Request'];
     }
 
 		$publisherClicksSummaryParams = array(
@@ -470,8 +470,8 @@ class PublisherService
    * @return mixed
    */
 	public function getPublisherStatisticsPerClick($params) {
-    if(isset($params['request']) && !isset($params['GetPublisherStatisticsPerClickRequestMessage'])) {
-      $params['GetPublisherStatisticsPerClickRequestMessage'] = $params['request'];
+    if(isset($params['Request']) && !isset($params['GetPublisherStatisticsPerClickRequestMessage'])) {
+      $params['GetPublisherStatisticsPerClickRequestMessage'] = $params['Request'];
     }
 
 		$publisherStatisticsPerClickParams = array(
