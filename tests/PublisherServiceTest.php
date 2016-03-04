@@ -401,4 +401,26 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('stdClass', $subIdStatistics);
 		$this->assertTrue(isset($subIdStatistics->SubIdStatisticsRecords));
 	}
+
+
+	/**
+	 * @test
+  */
+	public function testGetClicksBySubIdPerDay() {
+		$startDate = strtotime("-2 months");
+		$endDate = strtotime("today");
+		$params = array(
+				'StartDate' => $startDate,
+				'EndDate' => $endDate,
+				'UseGrossValues' => true,
+				'ProgramId' => '0'
+		);
+
+		$clicksBySubIdPerDay = self::$publisherService->getClicksBySubIdPerDay(array(
+			'request' => $params
+		));
+
+		$this->assertInstanceOf('stdClass', $clicksBySubIdPerDay);
+		$this->assertTrue(isset($clicksBySubIdPerDay->ArrayOfClicksBySubIdRecords));
+	}
 }

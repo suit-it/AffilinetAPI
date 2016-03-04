@@ -296,6 +296,22 @@ class PublisherService
 	}
 
 
+	public function GetClicksBySubIdPerDay($params) {
+    if(isset($params['request']) && !isset($params['GetClicksBySubIdPerDayRequestMessage'])) {
+      $params['GetClicksBySubIdPerDayRequestMessage'] = $params['request'];
+    }
+
+		$clicksBySubIdPerDayParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$clicksBySubIdPerDayParams = $params + $clicksBySubIdPerDayParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetClicksBySubIdPerDay($clicksBySubIdPerDayParams);
+	}
+
+
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
       'CurrentPage' => 1,
