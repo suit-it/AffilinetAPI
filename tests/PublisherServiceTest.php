@@ -219,6 +219,21 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $displaySettings = self::$publisherService->setDefaultDisplaySettings(0);
   }
 
+  /**
+   * @test
+   */
+  public function testGetPrograms() {
+    $programsQuery = array(
+      'PartnershipStatus' => array('Active')
+    );
 
+    $programs = self::$publisherService->getPrograms(array(
+      'DisplaySettings' => self::$publisherService->getDefaultDisplaySettings(),
+      'GetProgramsQuery' => $programsQuery
+    ));
+
+    $this->assertInstanceOf('stdClass', $programs);
+    $this->assertTrue(isset($programs->ProgramCollection));
+  }
 
 }

@@ -46,6 +46,7 @@ class PublisherService
 
     $this->initWsdls();
     $this->initSoapClients();
+    $this->initDefaultDisplaySettings();
   }
 
 
@@ -169,9 +170,22 @@ class PublisherService
     $this->displaySettings = $newDisplaySettings;
   }
 
+
   public function getDefaultDisplaySettings() {
     return $this->displaySettings;
   }
+
+
+  public function getPrograms($params) {
+    $programParams = array(
+      'CredentialToken' => $this->logon->getToken()
+    );
+
+    $programParams = array_merge($programParams, $params);
+
+    return $this->getSoapClientFrom('publisher_program')->GetPrograms($programParams);
+  }
+
 
   private function initDefaultDisplaySettings() {
     $this->displaySettings = array(
@@ -186,12 +200,14 @@ class PublisherService
     $this->wsdls['account_service'] = "https://api.affili.net/V2.0/AccountService.svc?wsdl";
     $this->wsdls['publisher_creative'] = "https://api.affili.net/V2.0/PublisherCreative.svc?wsdl";
     $this->wsdls['publisher_inbox'] = "https://api.affili.net/V2.0/PublisherInbox.svc?wsdl";
+    $this->wsdls['publisher_program'] = "https://api.affili.net/V2.0/PublisherProgram.svc?wsdl";
   }
 
   private function initSoapClients() {
     $this->soapClients['account_service'] = null;
     $this->soapClients['publisher_creative'] = null;
     $this->soapClients['publisher_inbox'] = null;
+    $this->soapClients['publisher_program'] = null;
   }
 
   private function getSoapClientFrom($service) {
