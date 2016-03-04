@@ -49,6 +49,8 @@ print_r($response);
 ### getProgramCategories with AffilinetAPI
 ```php
   <?php
+  use AffilinetAPI;
+  
   // Login
   $publisherLogon = new PublisherLogon("AFFILINET_USER_NAME", "AFFILINET_PUBLISHER_PASSWORD");
   $publisherService = new PublisherService($publisherLogon);
