@@ -59,7 +59,8 @@ class PublisherService
 
   public function getPayments($params) {
     $paymentParams = $this->getCommonParams();
-    $paymentParams = array_merge($paymentParams, $params);
+
+    $paymentParams = $params + $paymentParams;
 
     return $this->getSoapClientFrom('account_service')->GetPayments($paymentParams);
   }
@@ -75,7 +76,8 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $creativeCategoriesParams = array_merge($creativeCategoriesParams, $params);
+
+    $creativeCategoriesParams = $params + $creativeCategoriesParams;
 
     return $this->getSoapClientFrom('publisher_creative')->
       GetCreativeCategories($creativeCategoriesParams);
@@ -87,7 +89,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $searchCreativesParams = array_merge($searchCreativesParams, $params);
+    $searchCreativesParams = $params + $searchCreativesParams;
 
     return $this->getSoapClientFrom('publisher_creative')->
       SearchCreatives($searchCreativesParams);
@@ -103,7 +105,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $programInfoMessagesParams = array_merge($programInfoMessagesParams, $params);
+    $programInfoMessagesParams = $params + $programInfoMessagesParams;
 
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramInfoMessages($programInfoMessagesParams);
   }
@@ -118,7 +120,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $programStatusMessagesParams = array_merge($programStatusMessagesParams, $params);
+    $programStatusMessagesParams = $params + $programStatusMessagesParams;
 
     return $this->getSoapClientFrom('publisher_inbox')->GetProgramStatusMessages($programStatusMessagesParams);
   }
@@ -133,7 +135,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $rateChangesParams = array_merge($rateChangesParams, $params);
+    $rateChangesParams = $params + $rateChangesParams;
 
     return $this->getSoapClientFrom('publisher_inbox')->GetRateChanges($rateChangesParams);
   }
@@ -153,9 +155,8 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-	  $voucherCodesParams = array_merge($voucherCodesParams, $params);
+    $voucherCodesParams = $params + $voucherCodesParams;
 
-    $this->getCommonParams();
     return $this->getSoapClientFrom('publisher_inbox')->SearchVoucherCodes($voucherCodesParams);
   }
 
@@ -183,7 +184,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $programParams = array_merge($programParams, $params);
+    $programParams = $params + $programParams;
 
     return $this->getSoapClientFrom('publisher_program')->GetPrograms($programParams);
   }
@@ -198,7 +199,7 @@ class PublisherService
   public function getProgramRates($params) {
     $programRatesParams = $this->getCommonParams();
 
-    $programRatesParams = $programRatesParams + $params;
+    $programRatesParams = $params + $programRatesParams;
 
     return $this->getSoapClientFrom('publisher_program')->
       GetProgramRates($programRatesParams);
@@ -210,7 +211,7 @@ class PublisherService
       'CredentialToken' => $this->logon->getToken()
     );
 
-    $transactionParams = $transactionParams + $params;
+    $transactionParams = $params + $transactionParams;
 
     return $this->getSoapClientFrom('publisher_statistics')->
       GetTransactions($transactionParams);
