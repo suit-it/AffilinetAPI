@@ -1,6 +1,6 @@
 {
     "name": "suit-it/affilinet-api",
-    "description": "An easy to use API for the affili.net WebServices",
+    "description": "simplifies the usage of the WebService by affili.net",
     "license": "MIT",
     "authors": [
         {
@@ -9,9 +9,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
-    }
+        "php": ">=5.6.0"
+    },
     "require-dev": {
-        "phpunit/phpunit": "4.8.*"
+        "phpunit/phpunit": "5.2"
     }
 }

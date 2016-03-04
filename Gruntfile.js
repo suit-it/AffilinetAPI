@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     phpunit: {
       classes: {
-        dir: 'tests/PublisherServiceTest.php'
+        dir: 'tests/'
       },
       options: {
         bin: 'vendor/bin/phpunit',

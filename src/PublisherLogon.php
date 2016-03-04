@@ -10,7 +10,7 @@
 
 namespace AffilinetAPI;
 
-include('Logon.php');
+include_once('Logon.php');
 
 /**
  * Class PublisherLogon
