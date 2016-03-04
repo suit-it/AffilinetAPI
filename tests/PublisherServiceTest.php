@@ -296,4 +296,29 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
     $this->assertInstanceOf('stdClass', $basketItems);
     $this->assertTrue(isset($basketItems->BasketItemCollection));
   }
+
+
+  /**
+   * @test
+   */
+  public function testGetDailyStatistics() {
+		$startDate = strtotime("-1 week");
+		$endDate = strtotime("today");
+
+		$params = array(
+				'StartDate' => $startDate,
+				'EndDate' => $endDate,
+				'ProgramId' => '0',
+				'SubId' => '',
+				'ProgramTypes' => PublisherService::ALL,
+				'ValuationType' => PublisherService::DATE_OF_REGISTRATION
+		);
+
+    $dailyStatistics = self::$publisherService->getDailyStatistics(array(
+      'request' => $params
+    ));
+
+		$this->assertInstanceOf('stdClass', $dailyStatistics);
+		$this->assertTrue(isset($dailyStatistics->DailyStatisticsRecords));
+  }
 }

@@ -28,6 +28,8 @@ class PublisherService
 
   const ALL = "All";
 
+	const DATE_OF_REGISTRATION = "DateOfRegistration";
+
   private $accountServiceWsdl = "";
   private $wsdls;
   private $logon;
@@ -228,6 +230,22 @@ class PublisherService
     return $this->getSoapClientFrom('publisher_statistics')->
       GetBasketItems($basketItemsParams);
   }
+
+
+	public function getDailyStatistics($params) {
+    if(isset($params['request']) && !isset($params['GetDailyStatisticsRequestMessage'])) {
+      $params['GetDailyStatisticsRequestMessage'] = $params['request'];
+    }
+
+		$dailyStatisticsParams = array(
+			'CredentialToken' => $this->logon->getToken()
+		);
+
+		$dailyStatisticsParams = $params + $dailyStatisticsParams;
+
+		return $this->getSoapClientFrom('publisher_statistics')->
+			GetDailyStatistics($dailyStatisticsParams);
+	}
 
 
   private function initDefaultDisplaySettings() {
