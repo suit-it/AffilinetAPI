@@ -359,12 +359,12 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		$params = array(
 				'StartDate' => $startDate,
 				'EndDate' => $endDate,
-				'TransactionStatus' => 'All',
+				'TransactionStatus' => PublisherService::ALL,
 				'ProgramIds' => $programIds,
 				'SubId' => '',
-				'ProgramTypes' => 'All',
-				'MaximumRecords' => '10',
-				'ValuationType' => 'DateOfRegistration'
+				'ProgramTypes' => PublisherService::ALL,
+				'MaximumRecords' => '1',
+				'ValuationType' => PublisherService::DATE_OF_REGISTRATION
 		);
 
 		$salesLeadsStatistics = self::$publisherService->getSalesLeadsStatistics(array(
@@ -401,7 +401,4 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('stdClass', $subIdStatistics);
 		$this->assertTrue(isset($subIdStatistics->SubIdStatisticsRecords));
 	}
-
-
-
 }
