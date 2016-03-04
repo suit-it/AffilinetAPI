@@ -58,3 +58,7 @@ print_r($response);
   // Show response
   print_r($publisherService->getProgramCategories();
 ```
+
+## License
+
+AffilinetAPI is released under the [MIT License](http://www.opensource.org/licenses/MIT).
