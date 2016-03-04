@@ -423,4 +423,26 @@ class PublisherServiceTest extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('stdClass', $clicksBySubIdPerDay);
 		$this->assertTrue(isset($clicksBySubIdPerDay->ArrayOfClicksBySubIdRecords));
 	}
+
+
+	/**
+   * @test
+  */
+	public function testGetPublisherClicksSummary() {
+		$startDate = strtotime("-2 weeks");
+		$endDate = strtotime("today");
+		$params = array(
+				'ProgramId' => '0',
+				'StartDate' => $startDate,
+				'EndDate' => $endDate,
+				'SubId' => ''
+		);
+
+		$publisherClicksSummary = self::$publisherService->getPublisherClicksSummary(array(
+			'request' => $params
+		));
+
+		$this->assertInstanceOf('stdClass', $publisherClicksSummary);
+		$this->assertTrue(isset($publisherClicksSummary->PublisherClicksSummary));
+	}
 }
