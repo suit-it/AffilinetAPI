@@ -1,4 +1,4 @@
-# AffilinetAPI
+# Affilinet Facade
 simplifies the usage of the WebService by affili.net
 
 ## Installation
