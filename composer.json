@@ -1,9 +1,9 @@
 {
-    "name": "suit-it/affilinet-api",
+    "name": "suit-it/affilinet-facade",
     "type": "library",
     "description": "simplifies the usage of the WebService by affili.net",
     "keywords": ["affilinet", "affili", "affilinet soap"],
-    "homepage": "https://github.com/suit-it/AffilinetAPI",
+    "homepage": "https://github.com/suit-it/AffilinetFacade",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +18,7 @@
     },
     "autoload": {
       "psr-0": {
-        "AffilinetAPI": "src"
+        "AffilinetFacade": "src"
     }
     },
     "require": {

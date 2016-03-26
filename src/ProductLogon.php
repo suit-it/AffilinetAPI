@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of AffilinetAPI.
+ * This file is part of AffilinetFacade.
  *
  * (c) Michael Golenia <golenia@suit-it.com>
  *
@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace AffilinetAPI;
+namespace AffilinetFacade;
 
 include_once 'Logon.php';
 
 /**
  * Class ProductLogon
- * @package AffilinetAPI
+ * @package AffilinetFacade
  */
 class ProductLogon extends Logon
 {

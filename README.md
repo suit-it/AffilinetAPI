@@ -1,4 +1,4 @@
-# AffilinetAPI
+# AffilinetFacade
 simplifies the usage of the WebService by affili.net
 
 ## Installation
@@ -7,7 +7,7 @@ simplifies the usage of the WebService by affili.net
   
   ```sh
 "require": {
-    "suit-it/affilinet-api": "dev-master"
+    "suit-it/affilinet-facade": "dev-master"
 },
 ``` 
   
@@ -33,7 +33,7 @@ simplifies the usage of the WebService by affili.net
 
 ## Why? See the difference!
 
-### getProgramCategories without AffilinetAPI
+### getProgramCategories without AffilinetFacade
 ```php
 <?php 
 
@@ -52,10 +52,10 @@ $response = $soapRequest->GetProgramCategories($token);
 print_r($response);
 ```
 
-### getProgramCategories with AffilinetAPI
+### getProgramCategories with AffilinetFacade
 ```php
   <?php
-  use AffilinetAPI;
+  use AffilinetFacade;
   
   // Login
   $publisherLogon = new PublisherLogon("AFFILINET_USER_NAME", "AFFILINET_PUBLISHER_PASSWORD");
@@ -67,4 +67,4 @@ print_r($response);
 
 ## License
 
-AffilinetAPI is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+AffilinetFacade is released under the [MIT License](http://www.opensource.org/licenses/MIT).
